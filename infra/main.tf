@@ -6,7 +6,10 @@ locals {
 
 resource "aws_s3_bucket" "site" {
   bucket = var.bucket_name
-  tags   = local.tags
+  lifecycle {
+    create_before_destroy = true
+  }
+  tags = local.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "site" {
