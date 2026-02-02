@@ -46,8 +46,11 @@ resource "aws_cloudfront_origin_access_control" "oac" {
 }
 
 resource "aws_acm_certificate" "site" {
-  provider          = aws.use1
-  domain_name       = var.domain_name
+  provider    = aws.use1
+  domain_name = var.domain_name
+  subject_alternative_names = [
+    "www.${var.domain_name}"
+  ]
   validation_method = "DNS"
 
   lifecycle {
