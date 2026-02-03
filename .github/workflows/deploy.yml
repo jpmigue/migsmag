@@ -38,8 +38,9 @@ jobs:
           hugo-version: "0.125.7"
           extended: true
 
-      - name: Build
+      - name: Build site
         run: hugo --minify
+        working-directory: site
 
       - name: Sync to S3
         run: |
