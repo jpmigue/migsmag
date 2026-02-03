@@ -1,0 +1,55 @@
+name: Deploy Hugo site
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "content/**"
+      - "layouts/**"
+      - "static/**"
+      - "assets/**"
+      - "config/**"
+      - "config.toml"
+      - "config.yaml"
+      - "config.yml"
+  workflow_dispatch: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.125.7"
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Sync to S3
+        run: |
+          aws s3 sync public/ "s3://${{ vars.TF_VAR_BUCKET_NAME }}/" --delete
+        env:
+          TF_VAR_bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
+
+      - name: Invalidate CloudFront
+        run: |
+          DIST_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[?@=='${{ vars.TF_VAR_DOMAIN_NAME }}']].Id | [0]" --output text)
+          aws cloudfront create-invalidation --distribution-id "$DIST_ID" --paths "/*"
+        env:
+          TF_VAR_domain_name: ${{ vars.TF_VAR_DOMAIN_NAME }}

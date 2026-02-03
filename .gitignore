@@ -9,7 +9,8 @@
 
 # Hugo
 site/public/
-site/resources/_gen/
+site/resources/
+site/.hugo_build.lock
 
 # OS/editor
 *~

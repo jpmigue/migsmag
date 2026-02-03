@@ -1,0 +1,14 @@
+baseURL = 'https://www.migsmag.com/'
+languageCode = 'en-gb'
+title = "Migs's Mag"
+enableRobotsTXT = true
+
+theme = 'PaperMod'
+[params]
+  env = "production"
+  defaultTheme = "dark"   # dark | light | auto
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowCodeCopyButtons = true
+  label.icon = "/images/logo.png"
+  label.iconHeight = 35
