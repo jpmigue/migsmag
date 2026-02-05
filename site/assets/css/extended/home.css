@@ -37,6 +37,10 @@
   backdrop-filter: blur(10px);
 }
 
+.migsmag-home__sections a {
+  display: block;
+}
+
 .migsmag-home__prompt {
   opacity: 0.7;
   user-select: none;

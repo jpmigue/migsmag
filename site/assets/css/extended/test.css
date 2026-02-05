@@ -1,0 +1,31 @@
+.test-one h1 {
+	color: darkcyan;	
+}
+
+.test-one h2 {
+	color: mediumvioletred;
+}
+
+.test-one h3 {
+	color: lightgoldenrodyellow;
+}
+
+.test-one p {
+	color: steelblue;
+	font-size: 24px;
+}
+
+.front-page {
+	color: goldenrod;
+	font-size: 12px;
+}
+
+.front-page__intro h1 {
+	color: seagreen;
+	font-size: 48px;
+}
+
+.front-page__list a  {
+	color: orangered; font-size: 24px;
+	display: block;
+}

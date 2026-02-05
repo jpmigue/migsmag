@@ -11,6 +11,11 @@
       <span class="migsmag-home__prompt" aria-hidden="true">Say something…</span>
       <button class="migsmag-home__btn" type="button">Go on then</button>
     </div>
+    <nav class="migsmag-home__sections">
+      {{ range .Site.Sections.ByTitle }}
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ end }}
+    </nav>
   </section>
 </main>
 {{ end }}

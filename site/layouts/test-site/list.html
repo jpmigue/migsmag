@@ -1,0 +1,17 @@
+{{ define "main" }}
+<main class="main front-page">
+
+  {{ with .Content }}
+    <div class="front-page__intro">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  <nav class="front-page__list">
+    {{ range .RegularPages.ByTitle }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+  </nav>
+
+</main>
+{{ end }}
