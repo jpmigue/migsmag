@@ -83,6 +83,15 @@ resource "aws_acm_certificate_validation" "site" {
   validation_record_fqdns = [for r in aws_route53_record.cert_validation : r.fqdn]
 }
 
+resource "aws_cloudfront_function" "clean_urls" {
+  name    = "migsmag-clean-urls"
+  runtime = "cloudfront-js-1.0"
+  comment = "Rewrite /path and /path/ to /path/index.html for S3 REST origin"
+  publish = true
+
+  code = file("${path.module}/cloudfront/functions/clean-urls.js")
+}
+
 resource "aws_cloudfront_distribution" "site" {
   enabled         = true
   is_ipv6_enabled = true
@@ -107,6 +116,11 @@ resource "aws_cloudfront_distribution" "site" {
 
     cache_policy_id          = data.aws_cloudfront_cache_policy.caching_optimized.id
     origin_request_policy_id = data.aws_cloudfront_origin_request_policy.cors_s3origin.id
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.clean_urls.arn
+    }
   }
 
   # Default root object
