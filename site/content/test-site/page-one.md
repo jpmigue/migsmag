@@ -1,6 +1,5 @@
 +++
 date = '2026-02-05T12:29:47Z'
-draft = false
 title = 'Page One'
 layout = 'page-one'
 +++
