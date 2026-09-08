@@ -4,14 +4,14 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "content/**"
-      - "layouts/**"
-      - "static/**"
-      - "assets/**"
-      - "config/**"
-      - "config.toml"
-      - "config.yaml"
-      - "config.yml"
+      - "site/content/**"
+      - "site/layouts/**"
+      - "site/static/**"
+      - "site/assets/**"
+      - "site/config/**"
+      - "site/config.toml"
+      - "site/config.yaml"
+      - "site/config.yml"
   workflow_dispatch: {}
 
 permissions:
