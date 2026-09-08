@@ -1,0 +1,25 @@
+{{ define "main" }}
+<main class="main index-page">
+
+  {{ with .Content }}
+    <div class="post-content">
+      {{ . }}
+    </div>
+  {{ end }}
+
+  <h2 class="index-page__heading">Guides</h2>
+  <nav class="index-page__section-list">
+    {{ range .RegularPages.ByTitle }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+  </nav>
+
+  <h2 class="index-page__heading">Topics</h2>
+  <nav class="index-page__subsection-list">
+    {{ range .Sections.ByTitle }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ end }}
+  </nav>
+  <button class="back-btn" onclick="window.history.back();">Back</button>
+</main>
+{{ end }}
