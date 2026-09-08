@@ -1,0 +1,125 @@
+:root {
+  --main-width: 1000px; /* try 1000–1200 */
+}
+
+.tech p + :is(h1, h2, h3, h4, h5, h6) {
+	margin-top: 2rem;
+}
+
+.tech .post-content pre {
+  margin-bottom: 2rem;
+}
+
+.tech .post-content .highlight:not(table) {
+  margin-bottom: 2rem;
+}
+
+.tech h1 {
+	color: #e6e6e6;
+	font-size: 56px;
+}
+
+.tech h2 {
+	color: #e6e6e6;
+	font-size: 48px;
+}
+
+.tech h3 {
+	color: #e6e6e6;
+	font-size: 36px;
+}
+
+.tech body {
+	color: #d4d4d4;
+	font-size: 18px;
+}
+
+@font-face {
+  font-family: "Courier Prime";
+  src: url("/fonts/courier-prime-v11-latin-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* All code (inline + blocks) */
+main.main code,
+main.main pre {
+  font-family:
+    "Courier Prime",
+    monospace;
+}
+
+/* Inline code (single backticks) */
+main.main :not(pre) > code {
+  color: #38bdf8;
+  background: rgba(0,0,0,0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Code blocks (triple backticks) */
+main.main pre code {
+  color: #38bdf8;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* Normal body text - shouldn't be using as just links required 
+.index-page {
+	color: goldenrod;
+	font-size: 8px;
+}
+*/
+
+/* Any heading for the section index */
+.index-page__heading {
+	color: goldenrod;
+	font-size: 32px;
+}
+
+/* But we still want to be able to target h2 elements */
+.index-page__heading h2 {
+	color: goldenrod;
+	font-size: 32px;
+}
+
+/* The links */
+.index-page__section-list a  {
+	color: goldenrod; font-size: 24px;
+	display: block;
+}
+
+.index-page__subsection-list a  {
+	color: orangered; font-size: 24px;
+	display: block;
+}
+
+.back-btn {
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+/* Optional: slight outdent everywhere (tune the value) */
+.main .back-btn {
+  margin-left: -1rem;
+}
+
+/* Make the PRE be the scrolling box (so background stays intact) */
+.tech pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Hugo/Chroma emitted flex-line wrappers can break overflow/background.
+   Force them back to normal block flow. */
+.tech pre code > span {
+  display: block !important;
+}
+
+/* Ensure code width can exceed the container so scrolling happens */
+.tech pre code {
+  display: block;
+  min-width: max-content;
+}
