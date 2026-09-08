@@ -9,9 +9,7 @@ on:
       - "site/static/**"
       - "site/assets/**"
       - "site/config/**"
-      - "site/config.toml"
-      - "site/config.yaml"
-      - "site/config.yml"
+      - "site/hugo.toml"
   workflow_dispatch: {}
 
 permissions:
